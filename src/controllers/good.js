@@ -20,6 +20,7 @@ const goodController = {
         res,
         400,
         false,
+        null,
         "Name product is already used. Try to add product with another unique name product"
       );
     }
