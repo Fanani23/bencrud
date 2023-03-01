@@ -48,6 +48,7 @@ const goodController = {
       await createGood(data);
       return response(res, 200, true, data, "Create good success");
     } catch (err) {
+      console.log(err);
       return response(res, 400, false, err, "Create good failed");
     }
   },
