@@ -6,11 +6,23 @@ const {
   updateGood,
   deleteGood,
   countGoods,
+  findGood,
 } = require("../models/good");
 const cloudinary = require("../configs/cloud");
 
 const goodController = {
   create: async (req, res, next) => {
+    let {
+      rows: [goods],
+    } = await findGood(req.body.name);
+    if (goods) {
+      return response(
+        res,
+        400,
+        false,
+        "Name product is already used. Try to add product with another unique name product"
+      );
+    }
     try {
       let digits = "0123456789";
       let id = "";

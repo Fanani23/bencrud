@@ -19,6 +19,18 @@ const createGood = (data) => {
   });
 };
 
+const findGood = (name) => {
+  return new Promise((resolve, reject) => {
+    pool.query(`SELECT * FROM goods WHERE name = '${name}'`, (err, res) => {
+      if (!err) {
+        resolve(res);
+      } else {
+        reject(err);
+      }
+    });
+  });
+};
+
 const getGood = ({ search, sortby, sortorder, limit, offset }) => {
   return new Promise((resolve, reject) => {
     pool.query(
@@ -99,4 +111,5 @@ module.exports = {
   updateGood,
   deleteGood,
   countGoods,
+  findGood,
 };
